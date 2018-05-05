@@ -5,5 +5,5 @@
     npm install
 ### 編譯
     npm run build
-### server以及hot reload localhost:8080
+### 開發以及hot reload localhost:8080
     npm run dev

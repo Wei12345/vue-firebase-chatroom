@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: [
@@ -26,6 +27,7 @@ module.exports = {
       vue: {
         postcss: [require('postcss-cssnext')()]
       }
-    })
+    }),
+    new dotenv()
   ]
 }

@@ -3,7 +3,7 @@ const config = require('./webpack.base.config.js');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const htmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 
-config.output.publicPath = './dist/';
+config.output.publicPath = '/dist/';
 config.output.filename = 'bundle.js';
 
 config.entry = (config.entry || []).concat([
