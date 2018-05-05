@@ -3,7 +3,7 @@ const config = require('./webpack.base.config.js');
 const compressionWebpackPlugin = require('compression-webpack-plugin');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 
-config.output.publicPath = '/dist/';
+config.output.publicPath = './dist/';
 config.output.filename = 'bundle.js';
 
 config.plugins = (config.plugins || []).concat([
