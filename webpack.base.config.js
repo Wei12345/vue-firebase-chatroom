@@ -3,10 +3,6 @@ const webpack = require('webpack');
 const dotenv = require('dotenv-webpack');
 
 module.exports = {
-  entry: [
-    'babel-polyfill',
-    './src/main.js'
-  ],
   output: {
     path: path.join(__dirname, 'dist')
   },
