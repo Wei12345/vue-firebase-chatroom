@@ -12,7 +12,7 @@ module.exports = {
   },
   module: {
     loaders: [
-      {test: /\.css$/, loader: 'style-loader!css-loader'},
+      { test: /\.css$/, loader: 'style-loader!css-loader' },
       {
         test: /\.vue$/, 
         loader: 'vue-loader',
@@ -22,7 +22,7 @@ module.exports = {
           }
         }
       },
-      {test: /\.(png|jpe?g|gif|svg|ico|woff|woff2|eot|ttf)$/, loader: 'url-loader?limit=8192'},
+      { test: /\.(png|jpe?g|gif|svg|ico|woff|woff2|eot|ttf)$/, loader: 'url-loader?limit=8192' },
       {
         test: /\.js$/,
         loader: 'babel-loader',

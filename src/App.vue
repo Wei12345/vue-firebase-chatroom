@@ -19,6 +19,16 @@
 			} else{
 				this.userId = this.$_uuid.v4();
 			}
+			
+			this.$_firebase.initializeApp({
+				apiKey: process.env.firebaseApiKey,
+				authDomain: process.env.firebaseAuthDomain,
+				databaseURL: process.env.firebaseDatabaseURL,
+				projectId: process.env.firebaseProjectId,
+				storageBucket: process.env.firebaseStorageBucket,
+				messagingSenderId: process.env.firebaseMessagingSenderId,
+				timestampsInSnapshots: true
+			});
 		},
 		computed: {
 			userId: {
@@ -54,18 +64,19 @@
 
 <!-- 全域style -->
 <style lang="scss">
-	@import '~normalize.css';
-
 	html{
 		font-size: 10px;
 	}
 	body{
 		font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 	}
-	input, button{
+	textarea, input, button{
 		&:focus{
 			outline: none;
 		}
+	}
+	textarea{
+		resize: none;
 	}
 	h1, h2, h3, h4, p{
 		margin: 0px;
