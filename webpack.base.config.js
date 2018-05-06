@@ -13,7 +13,15 @@ module.exports = {
   module: {
     loaders: [
       {test: /\.css$/, loader: 'style-loader!css-loader'},
-      {test: /\.vue$/, loader: 'vue-loader'},
+      {
+        test: /\.vue$/, 
+        loader: 'vue-loader',
+        options: {
+          loaders: {
+            scss: 'style-loader!css-loader!sass-loader'
+          }
+        }
+      },
       {test: /\.(png|jpe?g|gif|svg|ico|woff|woff2|eot|ttf)$/, loader: 'url-loader?limit=8192'},
       {
         test: /\.js$/,
