@@ -1,5 +1,6 @@
 export default{
 	usernameModalShow: state => state.usernameModalShow,
 	userId: state => state.userId,
-	username: state => state.username
+	username: state => state.username,
+	userMessage: state => state.userMessage
 }

@@ -6,7 +6,6 @@
 </template>
 	
 <script>
-	import { mapGetters } from 'vuex';
 	import UsernameModal from './components/UsernameModal.vue';
 
 	export default{
@@ -19,16 +18,6 @@
 			} else{
 				this.userId = this.$_uuid.v4();
 			}
-			
-			this.$_firebase.initializeApp({
-				apiKey: process.env.firebaseApiKey,
-				authDomain: process.env.firebaseAuthDomain,
-				databaseURL: process.env.firebaseDatabaseURL,
-				projectId: process.env.firebaseProjectId,
-				storageBucket: process.env.firebaseStorageBucket,
-				messagingSenderId: process.env.firebaseMessagingSenderId,
-				timestampsInSnapshots: true
-			});
 		},
 		computed: {
 			userId: {

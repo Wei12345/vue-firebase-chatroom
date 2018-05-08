@@ -3,12 +3,14 @@ import Vuex from 'vuex';
 import getters from './getters.js';
 import actions from './actions.js';
 import mutations from './mutations.js';
+import messages from './modules/messages.js';
 Vue.use(Vuex);
 
 const state = {
 	usernameModalShow: true,
 	userId: '',
-	username: ''
+	username: '',
+	userMessage: ''
 }
 
 const store = new Vuex.Store({
@@ -16,6 +18,9 @@ const store = new Vuex.Store({
 	getters,
 	actions,
 	mutations,
+	modules: {
+		messages
+	},
 	strict: process.env.NODE_ENV !== 'production'
 });
 

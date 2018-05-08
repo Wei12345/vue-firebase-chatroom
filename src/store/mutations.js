@@ -7,5 +7,8 @@ export default{
 	},
 	setUsername(state, username){
 		state.username = username;
+	},
+	setUserMessage(state, userMessage){
+		state.userMessage = userMessage;
 	}
 }

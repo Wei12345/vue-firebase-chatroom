@@ -27,43 +27,62 @@
 		data(){
 			return {
 				firestore: this.$_firebase.firestore(),
-				collectionName: 'messages',
-				userMessage: '',
-				messages: []
+				collectionName: 'messages'
 			}
 		},
-		async created(){
+		created(){
 			this.firestore.settings({
 				timestampsInSnapshots: true
 			});
 
-			this.firestore.collection(this.collectionName).orderBy('timestamp').onSnapshot(querySnapshot => {
-				if(!querySnapshot.hasPendingWrites){
-					this.messages = querySnapshot.docs.map(doc => {
-						const data = doc.data();
-						const datetime = data.timestamp
-							? this.$_moment(data.timestamp.toDate()).format('MM-DD a hh:mm')
-							: ''
-
-						return {
-							id: doc.id,
-							...data,
-							datetime: datetime
-						}
-					});
-
-					this.$nextTick(() => {
-						document.querySelector('.chatroom-body').scrollTop = 99999;
-					});
+			this.getMessages();
+		},
+		computed: {
+			userMessage: {
+				get(){
+					return this.$store.getters.userMessage;
+				},
+				set(userMessage){
+					this.$store.commit('setUserMessage', userMessage);
 				}
-			});
-
+			},
+			messages: {
+				get(){
+					return this.$store.getters.messages;
+				},
+				set(messages){
+					this.$store.commit('setMessages', messages);
+				}
+			},
+			...mapGetters(['userId', 'username'])
 		},
 		methods: {
 			usernameChange(){
 				this.setUsernameModalShow(true);
 			},
-			sendMessage(event){
+			getMessages(){
+				this.firestore.collection(this.collectionName).orderBy('timestamp').onSnapshot(querySnapshot => {
+					if(!querySnapshot.hasPendingWrites){
+						this.messages = querySnapshot.docs.map(doc => {
+							const data = doc.data();
+							const datetime = data.timestamp
+								? this.$_moment(data.timestamp.toDate()).format('MM-DD a hh:mm')
+								: ''
+
+							return {
+								id: doc.id,
+								...data,
+								datetime: datetime
+							}
+						});
+
+						this.$nextTick(() => {
+							document.querySelector('.chatroom-body').scrollTop = 99999;
+						});
+					}
+				});
+			},
+			sendMessage(){
 				if(this.userMessage){
 					this.firestore.collection(this.collectionName).add({
 						userId: this.userId,
@@ -76,9 +95,6 @@
 				}
 			},
 			...mapMutations(['setUsernameModalShow'])
-		},
-		computed: {
-			...mapGetters(['userId', 'username'])
 		}
 	}
 </script>
@@ -117,6 +133,7 @@
 			height: calc(100vh - 200px);
 			padding: 5px;
 			overflow-y: scroll;
+			-webkit-overflow-scrolling: touch;
 			&-item{
 				margin: 10px 0px;
 				display: flex;
@@ -190,6 +207,7 @@
 				font-size: 1.4rem;
 				border: 0px;
 				width: 100%;
+				height: 100%;
 			}
 		}
 	}

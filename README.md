@@ -7,3 +7,7 @@
     npm run build
 ### 開發以及hot reload localhost:8080
     npm run dev
+### 編譯後啟動Server
+    npm run start
+### 編譯並啟動Server
+    npm run server
